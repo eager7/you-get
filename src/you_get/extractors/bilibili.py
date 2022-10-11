@@ -650,7 +650,7 @@ class Bilibili(VideoExtractor):
             initial_state = json.loads(initial_state_text)
             aid = initial_state['videoData']['aid']
             pn = initial_state['videoData']['videos']
-            kwargs['vid'] = aid  # PCT
+            kwargs['vid'] = initial_state['videoData']['bvid']  # PCT
 
             if pn == len(initial_state['videoData']['pages']):
                 # non-interative video
