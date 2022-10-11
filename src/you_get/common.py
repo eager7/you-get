@@ -1750,7 +1750,7 @@ def script_main(download, download_playlist, **kwargs):
 
     args.playlist = True
     if len(args.URL) == 0:
-        args.URL = ['https://www.bilibili.com/video/BV1ze4y1i7df/?spm_id_from=444.41.list.card_archive.click']
+        args.URL = ['https://www.bilibili.com/video/BV14B4y1J7QJ/?spm_id_from=pageDriver&vd_source=7e62dca4b2c7e7a3c545582f210a76da']
 
     URLs.extend(args.URL)
 
