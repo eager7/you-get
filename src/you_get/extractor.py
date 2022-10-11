@@ -41,7 +41,8 @@ class VideoExtractor():
 
     def download_by_url(self, url, **kwargs):
         self.url = url
-        self.vid = None
+        # self.vid = None
+        self.vid = kwargs['vid']  # PCT
 
         if 'extractor_proxy' in kwargs and kwargs['extractor_proxy']:
             set_proxy(parse_host(kwargs['extractor_proxy']))
@@ -239,7 +240,8 @@ class VideoExtractor():
                           output_dir=kwargs['output_dir'],
                           merge=kwargs['merge'],
                           av=stream_id in self.dash_streams,
-                          vid=self.vid)
+                          vid=self.vid,
+                          pi=kwargs['pi'])
 
             if 'caption' not in kwargs or not kwargs['caption']:
                 print('Skipping captions or danmaku.')

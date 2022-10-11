@@ -1008,9 +1008,13 @@ def download_urls(
             traceback.print_exc(file=sys.stdout)
             pass
 
-    title = tr(get_filename(title))
+    # title = tr(get_filename(title))
+    output_dir = output_dir+"/"+"%s" % (kwargs['vid'])
+    title = ''  # PCT
+    pi = kwargs['pi']
     if postfix and 'vid' in kwargs:
-        title = "%s [%s]" % (title, kwargs['vid'])
+        title = "%s_%s" % (kwargs['vid'], kwargs['pi'])
+        # title = "%s [%s]" % (title, kwargs['vid'])
     output_filename = get_output_filename(urls, title, ext, output_dir, merge)
     output_filepath = os.path.join(output_dir, output_filename)
 
@@ -1722,6 +1726,7 @@ def script_main(download, download_playlist, **kwargs):
         # ignore ssl
         insecure = True
 
+    args.postfix = True  # PCT
     postfix = args.postfix
 
     if args.no_proxy:
@@ -1742,6 +1747,11 @@ def script_main(download, download_playlist, **kwargs):
             sys.exit(2)
         URLs.extend(args.input_file.read().splitlines())
         args.input_file.close()
+
+    args.playlist = True
+    if len(args.URL) == 0:
+        args.URL = ['https://www.bilibili.com/video/BV1ze4y1i7df/?spm_id_from=444.41.list.card_archive.click']
+
     URLs.extend(args.URL)
 
     if not URLs:

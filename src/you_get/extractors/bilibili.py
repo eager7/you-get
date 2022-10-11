@@ -650,11 +650,13 @@ class Bilibili(VideoExtractor):
             initial_state = json.loads(initial_state_text)
             aid = initial_state['videoData']['aid']
             pn = initial_state['videoData']['videos']
+            kwargs['vid'] = aid  # PCT
 
             if pn == len(initial_state['videoData']['pages']):
                 # non-interative video
                 for pi in range(1, pn + 1):
                      purl = 'https://www.bilibili.com/video/av%s?p=%s' % (aid, pi)
+                     kwargs["pi"] = str(pi).zfill(2)  # PCT
                      self.__class__().download_by_url(purl, **kwargs)
 
             else:
